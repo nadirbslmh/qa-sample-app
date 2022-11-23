@@ -3,6 +3,8 @@ package org.example.boredapp;
 import org.example.boredapp.entity.Item;
 import org.example.boredapp.service.ItemService;
 
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
         ItemService itemService = new ItemService();
@@ -15,8 +17,16 @@ public class App {
         itemService.create(secondItem);
         itemService.create(thirdItem);
 
-        itemService.getAll();
+        List<Item> itemList = itemService.getAll();
 
-        itemService.getByIdx(2);
+        for (int i = 0; i < itemList.size(); i++) {
+            System.out.println(itemList.get(i).getName());
+            System.out.println(itemList.get(i).getPrice());
+        }
+
+        Item foundItem = itemService.getByIdx(2);
+
+        System.out.println(foundItem.getName());
+        System.out.println(foundItem.getPrice());
     }
 }
